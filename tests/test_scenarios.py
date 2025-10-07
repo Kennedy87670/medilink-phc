@@ -5,6 +5,11 @@ Tests the AI Triage Service with 5 different patient scenarios
 
 import json
 import sys
+import os
+
+# Add src directory to Python path
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
+
 from ai_triage_service import AITriageService
 
 
@@ -227,6 +232,9 @@ def run_test_scenarios(provider='groq'):
         print(f"❌ Failed: {failed}")
         print(f"Success Rate: {(passed/len(TEST_SCENARIOS)*100):.1f}%")
         
+        # Create tests directory if it doesn't exist
+        os.makedirs('tests', exist_ok=True)
+        
         # Save results
         with open('tests/test_results_day1.json', 'w') as f:
             json.dump(results, f, indent=2)
@@ -246,7 +254,7 @@ if __name__ == "__main__":
     provider = sys.argv[1] if len(sys.argv) > 1 else 'groq'
     
     if provider not in ['groq', 'gemini']:
-        print("Usage: python test_scenarios.py [groq|gemini]")
+        print("Usage: python tests/test_scenarios.py [groq|gemini]")
         sys.exit(1)
     
     run_test_scenarios(provider=provider)

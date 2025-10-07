@@ -1,0 +1,271 @@
+[
+  {
+    "scenario": "Scenario 1: Simple Malaria",
+    "status": "PASSED",
+    "result": {
+      "triage_level": 2,
+      "triage_label": "Urgent",
+      "confidence": 80,
+      "conditions": [
+        {
+          "name": "Malaria",
+          "confidence": 70,
+          "reasoning": "Fever, headache, and body aches are common symptoms of malaria, which is prevalent in Nigeria"
+        },
+        {
+          "name": "Typhoid Fever",
+          "confidence": 30,
+          "reasoning": "Fever and headache can also be symptoms of typhoid fever, although body aches are less common"
+        }
+      ],
+      "immediate_actions": [
+        "Administer antipyretics for fever reduction",
+        "Provide hydration and encourage oral fluids"
+      ],
+      "referral_needed": false,
+      "referral_reason": "",
+      "recommended_tests": [
+        "Malaria test",
+        "Blood work for typhoid fever"
+      ],
+      "warning_signs": [
+        "Difficulty breathing",
+        "Severe headache",
+        "Vomiting",
+        "Signs of dehydration"
+      ],
+      "patient_advice": "Rest, drink plenty of fluids, and take medication as prescribed. Return to the PHC if symptoms worsen or do not improve within 2 days.",
+      "response_time": 5.39,
+      "provider": "groq",
+      "patient_data": {
+        "age": 30,
+        "gender": "Male",
+        "symptoms": [
+          "fever",
+          "headache",
+          "body_aches"
+        ],
+        "duration": "3 days",
+        "vital_signs": {
+          "temperature": 38.5
+        }
+      }
+    }
+  },
+  {
+    "scenario": "Scenario 2: Critical Emergency",
+    "status": "PASSED",
+    "result": {
+      "triage_level": 1,
+      "triage_label": "Critical",
+      "confidence": 90,
+      "conditions": [
+        {
+          "name": "Meningitis",
+          "confidence": 80,
+          "reasoning": "High fever, convulsions, and unconsciousness are indicative of severe infection, possibly meningitis"
+        },
+        {
+          "name": "Severe Malaria",
+          "confidence": 70,
+          "reasoning": "High fever and convulsions can also be symptoms of severe malaria, common in Nigerian PHCs"
+        }
+      ],
+      "immediate_actions": [
+        "Administer anticonvulsants if available",
+        "Maintain patient airway, breathing, and circulation (ABCs)",
+        "Provide fluids for hydration"
+      ],
+      "referral_needed": true,
+      "referral_reason": "The patient shows critical signs that require immediate hospital attention, including convulsions and unconsciousness, which are beyond the capabilities of a PHC",
+      "recommended_tests": [
+        "Malaria test",
+        "Lumbar puncture (if feasible) or refer for it",
+        "Basic blood work"
+      ],
+      "warning_signs": [
+        "Signs of shock",
+        "Severe dehydration",
+        "Respiratory distress"
+      ],
+      "patient_advice": "The patient needs urgent medical attention at a hospital due to severe symptoms. Try to keep the patient calm and hydrated during transport.",
+      "response_time": 2.75,
+      "provider": "groq",
+      "patient_data": {
+        "age": 5,
+        "gender": "Male",
+        "symptoms": [
+          "high_fever_above_39",
+          "convulsions",
+          "unconscious"
+        ],
+        "duration": "Started 2 hours ago",
+        "vital_signs": {
+          "temperature": 40.2,
+          "respiratory_rate": 45
+        }
+      }
+    }
+  },
+  {
+    "scenario": "Scenario 3: Typhoid Fever",
+    "status": "PASSED",
+    "result": {
+      "triage_level": 2,
+      "triage_label": "Urgent",
+      "confidence": 80,
+      "conditions": [
+        {
+          "name": "Malaria",
+          "confidence": 70,
+          "reasoning": "High fever, common symptom in Nigerian PHCs"
+        },
+        {
+          "name": "Typhoid Fever",
+          "confidence": 50,
+          "reasoning": "Fever, stomach pain, and headache, consistent with typhoid symptoms"
+        }
+      ],
+      "immediate_actions": [
+        "Administer antipyretics for fever reduction",
+        "Provide oral rehydration solution for hydration"
+      ],
+      "referral_needed": false,
+      "referral_reason": "",
+      "recommended_tests": [
+        "Malaria test",
+        "Blood culture",
+        "Urine test"
+      ],
+      "warning_signs": [
+        "Severe headache",
+        "Confusion",
+        "Difficulty breathing"
+      ],
+      "patient_advice": "Drink plenty of fluids, rest, and return to the PHC if symptoms worsen or do not improve within 24 hours",
+      "response_time": 1.31,
+      "provider": "groq",
+      "patient_data": {
+        "age": 25,
+        "gender": "Female",
+        "symptoms": [
+          "fever",
+          "stomach_pain",
+          "weakness",
+          "headache"
+        ],
+        "duration": "7 days - fever getting worse",
+        "vital_signs": {
+          "temperature": 39.0
+        }
+      }
+    }
+  },
+  {
+    "scenario": "Scenario 4: Severe Diarrhea with Dehydration",
+    "status": "PASSED",
+    "result": {
+      "triage_level": 1,
+      "triage_label": "Critical",
+      "confidence": 90,
+      "conditions": [
+        {
+          "name": "Severe Dehydration due to Diarrheal Disease",
+          "confidence": 95,
+          "reasoning": "Sunken eyes, dry mouth, and worsening symptoms over 2 days indicate severe dehydration"
+        },
+        {
+          "name": "Gastroenteritis",
+          "confidence": 80,
+          "reasoning": "Diarrhea, vomiting, and weakness are common symptoms of gastroenteritis"
+        }
+      ],
+      "immediate_actions": [
+        "Administer oral rehydration solution (ORS) immediately",
+        "Provide intravenous fluids if available and if the patient is unable to drink"
+      ],
+      "referral_needed": true,
+      "referral_reason": "Severe dehydration and critical condition require close monitoring and possibly more advanced care than available at PHC",
+      "recommended_tests": [
+        "Stool test for bacterial or viral causes of diarrhea",
+        "Malaria test to rule out co-infection"
+      ],
+      "warning_signs": [
+        "Decreased urine output",
+        "Severe abdominal pain",
+        "Vomiting blood or black tarry stools"
+      ],
+      "patient_advice": "The patient needs urgent medical attention. Please ensure she drinks oral rehydration solution and is taken to a hospital for further care.",
+      "response_time": 1.11,
+      "provider": "groq",
+      "patient_data": {
+        "age": 3,
+        "gender": "Female",
+        "symptoms": [
+          "diarrhea",
+          "vomiting",
+          "weakness",
+          "sunken_eyes",
+          "dry_mouth"
+        ],
+        "duration": "2 days - getting worse",
+        "vital_signs": {
+          "temperature": 37.8,
+          "heart_rate": 130
+        }
+      }
+    }
+  },
+  {
+    "scenario": "Scenario 5: Minor Cold",
+    "status": "PASSED",
+    "result": {
+      "triage_level": 3,
+      "triage_label": "Standard",
+      "confidence": 80,
+      "conditions": [
+        {
+          "name": "Acute Respiratory Infection",
+          "confidence": 80,
+          "reasoning": "Patient presents with cough, runny nose, and sore throat, which are common symptoms of acute respiratory infections"
+        },
+        {
+          "name": "Common Cold",
+          "confidence": 60,
+          "reasoning": "Symptoms are also consistent with a common cold, but given the duration and combination of symptoms, an acute respiratory infection is more likely"
+        }
+      ],
+      "immediate_actions": [
+        "Provide patient with plenty of fluids",
+        "Monitor temperature and respiratory status"
+      ],
+      "referral_needed": false,
+      "referral_reason": "",
+      "recommended_tests": [
+        "Malaria test",
+        "Basic blood work"
+      ],
+      "warning_signs": [
+        "Difficulty breathing",
+        "High fever",
+        "Severe headache"
+      ],
+      "patient_advice": "Rest, drink plenty of fluids, and return to the clinic if symptoms worsen or do not improve within 2-3 days",
+      "response_time": 0.95,
+      "provider": "groq",
+      "patient_data": {
+        "age": 20,
+        "gender": "Male",
+        "symptoms": [
+          "cough",
+          "runny_nose",
+          "sore_throat"
+        ],
+        "duration": "2 days",
+        "vital_signs": {
+          "temperature": 37.2
+        }
+      }
+    }
+  }
+]
