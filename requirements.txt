@@ -1,0 +1,30 @@
+﻿# Core dependencies
+python-dotenv==1.0.0
+groq==0.4.1
+google-generativeai==0.3.2
+
+# Data processing
+pandas==2.1.4
+numpy==1.26.2
+
+# Forecasting
+prophet==1.1.5
+
+# API and backend
+fastapi==0.108.0
+uvicorn==0.25.0
+pydantic==2.5.3
+
+# Testing
+pytest==7.4.3
+requests==2.31.0
+
+# Utilities
+python-dateutil==2.8.2
+pytz==2023.3
+
+# Jupyter (for notebooks)
+jupyter==1.0.0
+ipykernel==6.27.1
+matplotlib==3.8.2
+seaborn==0.13.0
