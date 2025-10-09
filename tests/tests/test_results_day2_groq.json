@@ -1,0 +1,680 @@
+{
+  "provider": "groq",
+  "total_tests": 10,
+  "passed": 7,
+  "warnings": 1,
+  "failed": 3,
+  "success_rate": 70.0,
+  "avg_response_time": 4.35,
+  "timestamp": "2025-10-08 09:26:29",
+  "detailed_results": [
+    {
+      "test_id": "TEST-01",
+      "test_name": "Standard Malaria (English)",
+      "language": "English",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 80,
+        "reasoning": "The patient presents with fever, headache, body aches, and chills for 2 days, which are typical symptoms of several diseases prevalent in Nigeria, including malaria and typhoid fever. The elevated temperature of 38.5\u00b0C further supports the need for urgent attention. Although the symptoms do not currently indicate a critical condition, the duration and combination of symptoms warrant a thorough investigation and possible treatment within an hour.",
+        "red_flags": [],
+        "conditions": [
+          {
+            "name": "Malaria",
+            "confidence": 60,
+            "reasoning": "Malaria is endemic in Nigeria and accounts for about 60% of all fever cases. The patient's symptoms of fever, headache, and body aches are consistent with malaria.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Typhoid Fever",
+            "confidence": 20,
+            "reasoning": "Typhoid fever is also prevalent in Nigeria and can present with similar symptoms. However, it typically has a longer duration of fever and may include abdominal pain and diarrhea, which are not mentioned in this case."
+          }
+        ],
+        "immediate_actions": [
+          "Perform malaria RDT to rule out malaria",
+          "Start symptomatic treatment for fever and pain"
+        ],
+        "referral_needed": false,
+        "referral_reason": "",
+        "referral_urgency": "",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Blood culture if typhoid fever is suspected after initial evaluation"
+        ],
+        "warning_signs": [
+          "Difficulty breathing",
+          "Severe headache or stiff neck",
+          "Vomiting or diarrhea that worsens"
+        ],
+        "patient_advice": "The patient should return immediately if they experience difficulty breathing, severe headache, stiff neck, or if vomiting and diarrhea worsen. Otherwise, they should follow up in 24-48 hours to review test results and adjust treatment as necessary.",
+        "conservative_note": "Given the uncertainty and the prevalence of serious diseases in Nigeria, the triage level is set to urgent to ensure timely evaluation and treatment.",
+        "response_time": 3.11,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 28,
+          "gender": "Female",
+          "symptoms": [
+            "fever",
+            "headache",
+            "body aches",
+            "chills"
+          ],
+          "duration": "2 days",
+          "vital_signs": {
+            "temperature": 38.5
+          }
+        }
+      },
+      "analysis_time": 3.1108758449554443
+    },
+    {
+      "test_id": "TEST-02",
+      "test_name": "Critical Meningitis (English)",
+      "language": "English",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 1,
+        "triage_label": "Critical",
+        "confidence": 90,
+        "reasoning": "The patient presents with high fever (40.1\u00b0C), severe headache, stiff neck, vomiting, and sensitivity to light. The combination of fever and stiff neck is highly suggestive of meningitis, which is a critical condition requiring immediate attention. Additionally, the high fever itself is a red flag, especially in the context of Nigerian epidemiology where diseases like malaria and typhoid fever are prevalent but the symptoms presented here, particularly the stiff neck, point more towards meningitis.",
+        "red_flags": [
+          "High fever (40.1\u00b0C)",
+          "Stiff neck",
+          "Severe headache",
+          "Vomiting"
+        ],
+        "conditions": [
+          {
+            "name": "Meningitis",
+            "confidence": 90,
+            "reasoning": "The symptoms of high fever, severe headache, stiff neck, and vomiting are classic for meningitis, especially in a region where it is known to be seasonal and can have high incidence rates.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Malaria",
+            "confidence": 20,
+            "reasoning": "While malaria is highly prevalent in Nigeria and can cause high fever, the presence of a stiff neck and severe headache, along with vomiting, makes meningitis a more likely diagnosis in this case."
+          }
+        ],
+        "immediate_actions": [
+          "Administer emergency treatment for suspected meningitis, which may include antibiotics.",
+          "Prepare for immediate referral to a higher-level facility for further diagnosis and treatment, such as lumbar puncture."
+        ],
+        "referral_needed": true,
+        "referral_reason": "The patient's symptoms suggest meningitis, which requires immediate and specialized care not fully available at a primary health care center, such as lumbar puncture for definitive diagnosis and intensive care.",
+        "referral_urgency": "immediate",
+        "recommended_tests": [
+          "Meningitis PCR or latex agglutination test if available",
+          "Lumbar puncture at a referral facility"
+        ],
+        "warning_signs": [
+          "Worsening of headache or fever",
+          "Development of convulsions or loss of consciousness"
+        ],
+        "patient_advice": "The patient should be advised to seek immediate medical attention if they experience any worsening of symptoms, such as increased headache, fever, or difficulty breathing. They should also be informed of the importance of completing the full course of antibiotics if prescribed and the need for follow-up care.",
+        "conservative_note": "Given the severity of the symptoms and the potential for meningitis, a conservative approach is taken by triaging the patient as critical, ensuring immediate attention and referral for specialized care.",
+        "response_time": 2.02,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 19,
+          "gender": "Male",
+          "symptoms": [
+            "high fever",
+            "severe headache",
+            "stiff neck",
+            "vomiting",
+            "sensitivity to light"
+          ],
+          "duration": "Started this morning",
+          "vital_signs": {
+            "temperature": 40.1
+          }
+        }
+      },
+      "analysis_time": 2.0197954177856445
+    },
+    {
+      "test_id": "TEST-03",
+      "test_name": "Fever Case (Pidgin)",
+      "language": "Pidgin",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 80,
+        "reasoning": "The patient presents with high fever (>39\u00b0C) and concerning symptoms such as headache and weakness, which are common in several serious conditions prevalent in Nigeria, including malaria and typhoid fever. The duration of symptoms is 3 days, which does not yet indicate a prolonged fever that would automatically suggest typhoid, but the combination of high fever with other symptoms warrants urgent attention.",
+        "red_flags": [
+          "High fever"
+        ],
+        "conditions": [
+          {
+            "name": "Malaria",
+            "confidence": 60,
+            "reasoning": "Given the high prevalence of malaria in Nigeria and the presentation of fever, headache, and weakness, malaria is a likely diagnosis. The patient's symptoms are typical for uncomplicated malaria, but the high fever necessitates urgent evaluation.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Typhoid Fever",
+            "confidence": 20,
+            "reasoning": "Although less likely given the shorter duration of symptoms, typhoid fever remains a consideration, especially if the fever persists. The symptoms of headache and weakness could also be seen in typhoid fever."
+          }
+        ],
+        "immediate_actions": [
+          "Perform malaria RDT",
+          "Start symptomatic treatment for fever and headache"
+        ],
+        "referral_needed": false,
+        "referral_reason": "Not applicable at this time",
+        "referral_urgency": "routine",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Basic urinalysis"
+        ],
+        "warning_signs": [
+          "Difficulty breathing",
+          "Severe headache worsening over time",
+          "Fever not responding to treatment"
+        ],
+        "patient_advice": "The patient should return immediately if they experience difficulty breathing, severe worsening of headache, or if the fever does not improve with treatment. It is also crucial to complete the full course of any prescribed medication and to follow up as advised.",
+        "conservative_note": "The triage level was chosen with a conservative approach due to the high fever and the presence of other concerning symptoms, despite the absence of clear signs for a critical condition. The patient's condition could deteriorate, and prompt intervention is necessary to prevent complications.",
+        "response_time": 1.8,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 35,
+          "gender": "Male",
+          "symptoms": [
+            "fever",
+            "headache",
+            "weakness"
+          ],
+          "duration": "3 days",
+          "vital_signs": {
+            "temperature": 39.0
+          }
+        }
+      },
+      "analysis_time": 1.8041810989379883
+    },
+    {
+      "test_id": "TEST-04",
+      "test_name": "Diarrhea with Dehydration (Pidgin)",
+      "language": "Pidgin",
+      "status": "FAILED",
+      "issues": [
+        "Referral mismatch: got False, expected True",
+        "Expected conditions ['dehydration', 'gastroenteritis'] not found"
+      ],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 90,
+        "reasoning": "The patient is a 4-year-old female presenting with diarrhea, vomiting, sunken eyes, and fatigue for 2 days. Her temperature is 37.8\u00b0C, and her heart rate is 125 bpm. Given her symptoms, particularly the sunken eyes which indicate some level of dehydration, and the presence of vomiting and diarrhea, she meets criteria for moderate dehydration and thus requires urgent attention. The Nigerian epidemiology context suggests a high prevalence of diarrheal diseases, malaria, and typhoid fever, but the absence of fever >39\u00b0C or specific signs of severe dehydration, shock, or severe respiratory distress keeps her from being classified as critical at this moment.",
+        "red_flags": [
+          "Sunken eyes",
+          "Vomiting",
+          "Diarrhea"
+        ],
+        "conditions": [
+          {
+            "name": "Diarrheal Disease",
+            "confidence": 80,
+            "reasoning": "High prevalence in Nigeria, symptoms of diarrhea and vomiting, and signs of dehydration. Could be due to bacterial, viral, or parasitic causes.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Malaria",
+            "confidence": 20,
+            "reasoning": "Although the temperature is not high, malaria is very common in Nigeria and can present with a wide range of symptoms including fever, which might not always be very high, especially in partial treatment or mixed infections."
+          }
+        ],
+        "immediate_actions": [
+          "Start Oral Rehydration Solution (ORS) immediately to manage dehydration",
+          "Perform a malaria Rapid Diagnostic Test (RDT) to rule out malaria"
+        ],
+        "referral_needed": false,
+        "referral_reason": "",
+        "referral_urgency": "",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Stool test if diarrhea persists or worsens"
+        ],
+        "warning_signs": [
+          "Increased vomiting or diarrhea",
+          "Signs of severe dehydration (very dry mouth, no tears, sunken eyes worsen)",
+          "Fever >39\u00b0C",
+          "Difficulty breathing",
+          "Convulsions or lethargy"
+        ],
+        "patient_advice": "The patient should be given ORS to drink to help replace lost fluids. Monitor for signs of worsening dehydration or other complications. Return immediately if the patient shows signs of severe dehydration, difficulty breathing, convulsions, or if the condition worsens.",
+        "conservative_note": "Given the patient's age and symptoms, a conservative approach is taken by triaging as urgent due to the risk of rapid deterioration in pediatric patients, especially with signs of dehydration.",
+        "response_time": 2.11,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 4,
+          "gender": "Female",
+          "symptoms": [
+            "diarrhea",
+            "vomiting",
+            "sunken eyes",
+            "fatigue"
+          ],
+          "duration": "2 days",
+          "vital_signs": {
+            "temperature": 37.8,
+            "heart_rate": 125
+          }
+        }
+      },
+      "analysis_time": 2.1123316287994385
+    },
+    {
+      "test_id": "TEST-05",
+      "test_name": "Unconscious Child (Pidgin)",
+      "language": "Pidgin",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 1,
+        "triage_label": "Critical",
+        "confidence": 95,
+        "reasoning": "The patient is a 6-year-old male presenting with unconsciousness, convulsions, and a high fever of 40.5\u00b0C, which are all automatic Level 1 criteria. The combination of these symptoms, especially in a pediatric patient, necessitates immediate attention due to the risk of severe complications such as cerebral malaria, meningitis, or severe pneumonia, which are prevalent in Nigeria.",
+        "red_flags": [
+          "Convulsions",
+          "Unconsciousness",
+          "High fever >40\u00b0C"
+        ],
+        "conditions": [
+          {
+            "name": "Cerebral Malaria",
+            "confidence": 70,
+            "reasoning": "Given the high prevalence of malaria in Nigeria and the patient's symptoms of fever, convulsions, and unconsciousness, cerebral malaria is a likely diagnosis. Malaria is a leading cause of morbidity and mortality in children under 5 in Nigeria, but it can affect anyone.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Meningitis",
+            "confidence": 30,
+            "reasoning": "Although less likely without a stiff neck being mentioned, meningitis cannot be ruled out entirely, especially given the seasonal prevalence and the severity of the patient's condition. Meningitis is a critical condition that requires immediate medical attention."
+          }
+        ],
+        "immediate_actions": [
+          "Start the patient on antimalarial treatment immediately if malaria is suspected, pending the result of a malaria RDT.",
+          "Administer antibiotics if bacterial meningitis is suspected, after taking blood and CSF samples for culture if possible.",
+          "Maintain hydration and monitor vital signs closely."
+        ],
+        "referral_needed": true,
+        "referral_reason": "The patient requires advanced care that may not be available at the PHC, including potential need for lumbar puncture to diagnose meningitis, and intensive care for severe malaria or meningitis.",
+        "referral_urgency": "immediate",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Blood culture",
+          "Lumbar puncture for CSF analysis if meningitis is suspected"
+        ],
+        "warning_signs": [
+          "Worsening of convulsions or unconsciousness",
+          "Signs of severe dehydration or shock",
+          "Difficulty breathing"
+        ],
+        "patient_advice": "The patient needs immediate medical attention at a higher-level facility. If the patient's condition worsens or if there are signs of difficulty breathing, severe headache, or stiff neck, return to the hospital immediately.",
+        "conservative_note": "The triage level was chosen based on the severity of the symptoms presented, prioritizing the safety of the patient. Given the uncertainty and the potential for rapid deterioration in pediatric patients, especially with symptoms suggesting severe infection, it is crucial to err on the side of caution.",
+        "response_time": 2.26,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 6,
+          "gender": "Male",
+          "symptoms": [
+            "unconscious",
+            "convulsions",
+            "fever"
+          ],
+          "duration": "1 hour ago",
+          "vital_signs": {
+            "temperature": 40.5,
+            "respiratory_rate": 50
+          }
+        }
+      },
+      "analysis_time": 2.2551445960998535
+    },
+    {
+      "test_id": "TEST-06",
+      "test_name": "Prolonged Typhoid (English)",
+      "language": "English",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 80,
+        "reasoning": "The patient presents with high fever (>39\u00b0C) and concerning symptoms such as stomach pain, weakness, loss of appetite, and constipation. The duration of symptoms is 10 days, which suggests a possible serious infection like typhoid fever, given the epidemiology of Nigeria. Although the symptoms do not immediately suggest a critical condition, the combination of high fever with other symptoms and the duration of illness warrants an urgent assessment.",
+        "red_flags": [
+          "High fever (>39\u00b0C)",
+          "Prolonged duration of symptoms (10 days)"
+        ],
+        "conditions": [
+          {
+            "name": "Typhoid Fever",
+            "confidence": 60,
+            "reasoning": "Given the patient's symptoms of fever, stomach pain, and the duration of illness, typhoid fever is a likely diagnosis, especially considering its prevalence in Nigeria.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Malaria",
+            "confidence": 40,
+            "reasoning": "Although malaria is very common in Nigeria and could explain the fever, the presence of stomach pain and constipation, along with the prolonged fever, makes typhoid fever a more likely diagnosis in this context."
+          }
+        ],
+        "immediate_actions": [
+          "Perform malaria RDT to rule out malaria",
+          "Start antibiotic treatment if typhoid fever is suspected after further evaluation",
+          "Provide symptomatic treatment for fever and pain"
+        ],
+        "referral_needed": false,
+        "referral_reason": "Not applicable at this stage",
+        "referral_urgency": "Not applicable",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Blood culture (if facilities allow)",
+          "Widal test (for typhoid)"
+        ],
+        "warning_signs": [
+          "Severe abdominal pain",
+          "Vomiting or diarrhea leading to dehydration",
+          "Signs of meningitis (stiff neck, severe headache)",
+          "Difficulty breathing"
+        ],
+        "patient_advice": "The patient should return immediately if they experience severe abdominal pain, difficulty breathing, signs of dehydration, or if the fever worsens. They should also complete the full course of any prescribed medication and follow up as advised.",
+        "conservative_note": "The triage level was chosen with a conservative approach due to the patient's prolonged fever and combination of symptoms, which could indicate a serious infection. The lack of immediate critical signs does not rule out the potential for rapid deterioration, especially in the context of Nigerian disease epidemiology.",
+        "response_time": 1.98,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 22,
+          "gender": "Female",
+          "symptoms": [
+            "fever",
+            "stomach pain",
+            "weakness",
+            "loss of appetite",
+            "constipation"
+          ],
+          "duration": "10 days - fever comes and goes",
+          "vital_signs": {
+            "temperature": 39.2
+          }
+        }
+      },
+      "analysis_time": 1.9811301231384277
+    },
+    {
+      "test_id": "TEST-07",
+      "test_name": "Respiratory Infection (Mixed)",
+      "language": "Mixed",
+      "status": "PASSED",
+      "issues": [],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 80,
+        "reasoning": "The patient presents with high fever (38.7\u00b0C), persistent cough, chest pain, and difficulty breathing, which are concerning symptoms. Given the Nigerian epidemiology, these symptoms could suggest pneumonia or another acute respiratory infection, which are common in the region. The patient's age and the duration of symptoms (5 days) also contribute to the urgency of the situation.",
+        "red_flags": [
+          "High fever",
+          "Difficulty breathing"
+        ],
+        "conditions": [
+          {
+            "name": "Pneumonia",
+            "confidence": 60,
+            "reasoning": "The symptoms of persistent cough, chest pain, and difficulty breathing, combined with the high fever, suggest pneumonia as a likely diagnosis. Pneumonia is a leading cause of morbidity and mortality in Nigeria, especially in adults.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Malaria",
+            "confidence": 20,
+            "reasoning": "Although malaria is endemic in Nigeria and could present with fever, the respiratory symptoms (cough, chest pain, difficulty breathing) are not typical for malaria, making it a less likely diagnosis in this case."
+          }
+        ],
+        "immediate_actions": [
+          "Administer oxygen if available and necessary",
+          "Perform a malaria RDT to rule out malaria",
+          "Start antibiotic treatment if pneumonia is suspected"
+        ],
+        "referral_needed": false,
+        "referral_reason": "Not applicable at this time",
+        "referral_urgency": "Not applicable",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Chest X-ray (if available at a higher-level facility)"
+        ],
+        "warning_signs": [
+          "Increased difficulty breathing",
+          "Chest pain worsening",
+          "Fever not responding to treatment"
+        ],
+        "patient_advice": "The patient should return immediately if difficulty breathing worsens, chest pain increases, or fever does not improve with treatment. It is also crucial to complete the full course of antibiotics as prescribed and to follow up with a healthcare provider to ensure the infection is fully cleared.",
+        "conservative_note": "The triage level was chosen based on the severity of symptoms and the potential for the condition to worsen without prompt treatment, aligning with the principle of prioritizing safety and taking a conservative approach when in doubt.",
+        "response_time": 1.79,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 45,
+          "gender": "Male",
+          "symptoms": [
+            "persistent cough",
+            "chest pain",
+            "fever",
+            "breathit is hard"
+          ],
+          "duration": "5 days",
+          "vital_signs": {
+            "temperature": 38.7,
+            "respiratory_rate": 28
+          }
+        }
+      },
+      "analysis_time": 1.7863993644714355
+    },
+    {
+      "test_id": "TEST-08",
+      "test_name": "Minor Cold (English)",
+      "language": "English",
+      "status": "FAILED",
+      "issues": [
+        "Expected conditions ['common cold'] not found",
+        "Response time 8.21s exceeds 5s target"
+      ],
+      "result": {
+        "triage_level": 3,
+        "triage_label": "Standard",
+        "confidence": 80,
+        "reasoning": "The patient presents with runny nose, mild cough, and sore throat, which are typical symptoms of an acute respiratory infection. The duration of symptoms is 2 days, and the temperature is 37.1\u00b0C, which is slightly elevated but not high enough to indicate a severe infection. Given the symptoms and the patient's age, a standard triage level is appropriate for further investigation and management.",
+        "red_flags": [],
+        "conditions": [
+          {
+            "name": "Acute Respiratory Infection",
+            "confidence": 80,
+            "reasoning": "The symptoms of runny nose, mild cough, and sore throat are consistent with an acute respiratory infection, which is common in Nigeria.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Malaria",
+            "confidence": 20,
+            "reasoning": "Although the patient's temperature is slightly elevated, it is not typical of malaria, which usually presents with higher fever. However, given the high prevalence of malaria in Nigeria, it cannot be ruled out without further testing."
+          }
+        ],
+        "immediate_actions": [
+          "Perform a thorough physical examination",
+          "Consider a malaria RDT to rule out malaria"
+        ],
+        "referral_needed": false,
+        "referral_reason": "",
+        "referral_urgency": "",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Basic urinalysis"
+        ],
+        "warning_signs": [
+          "Difficulty breathing",
+          "Chest pain",
+          "Severe headache"
+        ],
+        "patient_advice": "The patient should return to the clinic if symptoms worsen or if they experience difficulty breathing, chest pain, or severe headache. They should also complete any prescribed treatment and attend follow-up appointments as scheduled.",
+        "conservative_note": "The triage level was not increased due to the patient's symptoms being typical of a common and manageable condition. However, the patient will be closely monitored for any signs of deterioration.",
+        "response_time": 8.21,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 25,
+          "gender": "Female",
+          "symptoms": [
+            "runny nose",
+            "mild cough",
+            "sore throat"
+          ],
+          "duration": "2 days",
+          "vital_signs": {
+            "temperature": 37.1
+          }
+        }
+      },
+      "analysis_time": 8.210415601730347
+    },
+    {
+      "test_id": "TEST-09",
+      "test_name": "Edge Case: Vague Symptoms",
+      "language": "English",
+      "status": "PASSED_WITH_WARNINGS",
+      "issues": [
+        "Response time 10.38s exceeds 5s target"
+      ],
+      "result": {
+        "triage_level": 3,
+        "triage_label": "Standard",
+        "confidence": 80,
+        "reasoning": "The patient presents with non-specific symptoms of not feeling well, tiredness, and body aches for 1 day. Given the high prevalence of malaria in Nigeria, which accounts for ~60% of all fever cases, and the absence of any critical signs or symptoms that would automatically categorize the patient as Level 1, a conservative approach leads to a Level 3 triage. The symptoms could suggest a range of conditions including malaria, typhoid fever, or acute respiratory infections, all of which are common in Nigeria.",
+        "red_flags": [],
+        "conditions": [
+          {
+            "name": "Malaria",
+            "confidence": 60,
+            "reasoning": "Given the high prevalence of malaria in Nigeria and the patient's symptoms, malaria is a likely consideration. However, without a fever explicitly mentioned or confirmed, this remains a suspicion rather than a diagnosis.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Acute Respiratory Infection",
+            "confidence": 20,
+            "reasoning": "Although less likely given the information, acute respiratory infections are common and could present with similar non-specific symptoms."
+          }
+        ],
+        "immediate_actions": [
+          "Perform malaria RDT",
+          "Assess for signs of dehydration and provide ORS if necessary"
+        ],
+        "referral_needed": false,
+        "referral_reason": "",
+        "referral_urgency": "",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Basic urinalysis"
+        ],
+        "warning_signs": [
+          "Development of severe headache",
+          "Onset of difficulty breathing",
+          "Severe abdominal pain"
+        ],
+        "patient_advice": "Rest, drink plenty of fluids, and return immediately if you experience difficulty breathing, severe headache, or if your condition worsens.",
+        "conservative_note": "The triage level was chosen based on the principle of being conservative when in doubt, given the non-specific nature of the symptoms and the potential for serious conditions such as malaria or typhoid fever in the Nigerian context.",
+        "response_time": 10.38,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 40,
+          "gender": "Male",
+          "symptoms": [
+            "not feeling well",
+            "tired",
+            "body aches"
+          ],
+          "duration": "1 day",
+          "vital_signs": {}
+        }
+      },
+      "analysis_time": 10.378579378128052
+    },
+    {
+      "test_id": "TEST-10",
+      "test_name": "Edge Case: Contradictory Symptoms",
+      "language": "English",
+      "status": "FAILED",
+      "issues": [
+        "Expected conditions ['infection'] not found",
+        "Response time 9.88s exceeds 5s target"
+      ],
+      "result": {
+        "triage_level": 2,
+        "triage_label": "Urgent",
+        "confidence": 80,
+        "reasoning": "The patient presents with fever, chills, and feeling cold but sweating, which are typical symptoms of several diseases prevalent in Nigeria, including malaria and typhoid fever. The elevated temperature of 38.9\u00b0C is a concerning symptom that warrants urgent attention. Given the duration of symptoms is only 4 hours, it's crucial to monitor and investigate further to determine the cause of the fever.",
+        "red_flags": [],
+        "conditions": [
+          {
+            "name": "Malaria",
+            "confidence": 60,
+            "reasoning": "Malaria is endemic in Nigeria and accounts for approximately 60% of all fever cases. The patient's symptoms of fever, chills, and sweating are consistent with malaria, especially given the high prevalence in the region.",
+            "typical_in_nigeria": true
+          },
+          {
+            "name": "Typhoid Fever",
+            "confidence": 20,
+            "reasoning": "Typhoid fever is another possibility, given the patient's symptoms and the fact that it accounts for 15-20% of prolonged fevers in Nigeria. However, the duration of symptoms is currently short, which slightly reduces the likelihood but does not rule it out."
+          }
+        ],
+        "immediate_actions": [
+          "Perform malaria RDT to rule out malaria",
+          "Start symptomatic treatment for fever and monitor closely"
+        ],
+        "referral_needed": false,
+        "referral_reason": "",
+        "referral_urgency": "",
+        "recommended_tests": [
+          "Malaria RDT",
+          "Basic urinalysis to rule out urinary tract infection"
+        ],
+        "warning_signs": [
+          "Difficulty breathing",
+          "Severe headache",
+          "Vomiting",
+          "Signs of severe dehydration"
+        ],
+        "patient_advice": "The patient should return immediately if they experience difficulty breathing, severe headache, vomiting, or signs of dehydration. It's also crucial to follow up in 24 hours to reassess symptoms and adjust treatment as necessary.",
+        "conservative_note": "The triage level was chosen based on the patient's symptoms and the prevalence of diseases in Nigeria. Although the symptoms could suggest a less urgent condition, the high fever and the potential for rapid deterioration, especially if the cause is malaria or typhoid, warrant an urgent triage level for safety.",
+        "response_time": 9.88,
+        "provider": "groq",
+        "attempt": 1,
+        "patient_data": {
+          "age": 30,
+          "gender": "Female",
+          "symptoms": [
+            "fever",
+            "chills",
+            "feeling cold but sweating"
+          ],
+          "duration": "4 hours",
+          "vital_signs": {
+            "temperature": 38.9
+          }
+        }
+      },
+      "analysis_time": 9.882192850112915
+    }
+  ]
+}
