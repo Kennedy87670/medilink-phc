@@ -156,6 +156,81 @@ Notes:
 - If Groq client errors due to httpx/proxies, switch provider to "gemini" in the sidebar or set `PRIMARY_AI_PROVIDER=gemini` in `.env`.
 - Forecasts require `data/patient_visits.csv`. Use `data/generate_patient_data.py` if needed.
 
+#### Sample Triage Output (JSON)
+
+docs/images/reply.png
+docs/images/streamlit-dashboard.png
+
+```json
+{
+  "triage_level": 3,
+  "triage_label": "Standard",
+  "confidence_score": 0.6,
+  "confidence_explanation": "Medium confidence due to vague symptoms but considering Nigerian disease epidemiology",
+  "reasoning": "The patient presents with tiredness, weakness, and headache for 7 days. These symptoms are non-specific and could be related to various conditions. However, given the high prevalence of malaria and typhoid fever in Nigeria, these need to be considered. The absence of fever does not rule out these conditions entirely, especially if the patient has been taking antipyretics. The duration of symptoms suggests a possible infectious cause, but without more specific symptoms or diagnostic findings, it's challenging to pinpoint the exact cause.",
+  "red_flags": [],
+  "edge_cases_handled": ["Vague symptoms - defaulting to Level 3 for safety"],
+  "conditions": [
+    {
+      "name": "Malaria",
+      "confidence": 40,
+      "reasoning": "Given the high prevalence of malaria in Nigeria and the patient's symptoms, malaria is a possible diagnosis. However, the absence of reported fever reduces the confidence in this diagnosis.",
+      "typical_in_nigeria": true
+    },
+    {
+      "name": "Typhoid Fever",
+      "confidence": 30,
+      "reasoning": "Typhoid fever is another common cause of prolonged fever in Nigeria, but the patient's symptoms are not highly suggestive of this condition at this point.",
+      "typical_in_nigeria": true
+    }
+  ],
+  "immediate_actions": [
+    "Perform malaria RDT",
+    "Consider empirical treatment for malaria if RDT is positive or if clinical suspicion remains high after negative RDT"
+  ],
+  "referral_needed": false,
+  "referral_reason": "",
+  "referral_urgency": "routine",
+  "recommended_tests": [
+    "Malaria RDT",
+    "Blood culture if typhoid fever is suspected"
+  ],
+  "warning_signs": [
+    "Development of fever",
+    "Severe headache",
+    "Vomiting",
+    "Diarrhea"
+  ],
+  "patient_advice": "Return immediately if you develop a fever, severe headache, vomiting, or diarrhea. Complete any prescribed treatment as directed.",
+  "special_population_note": "None",
+  "disclaimer": "AI-assisted suggestion. Verify with clinical examination.",
+  "response_time": 2.17,
+  "provider": "groq",
+  "attempt": 1,
+  "patient_data": {
+    "age": 35,
+    "gender": "Male",
+    "symptoms": ["tired", "weak", "headache"],
+    "duration": "7 days",
+    "vital_signs": {}
+  },
+  "translation_info": {
+    "original_symptoms": ["tired", "weak", "headache"],
+    "translated_symptoms": ["tired", "weak", "headache"],
+    "translation_map": {},
+    "languages_detected": [null, null, null]
+  }
+}
+```
+
+#### Playground Screenshots
+
+Place your screenshots in `docs/images/` with these filenames:
+
+![Streamlit Triage Input](docs/images/streamlit-triage-input.png)
+
+![Streamlit Triage Result](docs/images/streamlit-triage-result.png)
+
 ### Forecast Data Timing
 
 - The generator (`data/generate_patient_data.py`) creates a daily time series that ends on "yesterday" by default.
