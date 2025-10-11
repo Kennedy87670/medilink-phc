@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import multilingual translator
-from multilingual_translator import MultilingualTranslator
+from multilingual_translator_improved import EnhancedMultilingualTranslator
 
 # AI Provider imports
 try:
@@ -45,7 +45,7 @@ class AITriageServiceV3:
         'severe dehydration', 'sunken eyes', 'suspected meningitis'
     ]
     
-    def __init__(self, provider: str = None, timeout: int = 5, max_retries: int = 2):
+    def __init__(self, provider: str = None, timeout: int = None, max_retries: int = None):
         """
         Initialize Enhanced AI Triage Service with multilingual support
         
@@ -55,11 +55,15 @@ class AITriageServiceV3:
             max_retries: Number of retry attempts if AI fails (default 2)
         """
         self.provider = provider or os.getenv('PRIMARY_AI_PROVIDER', 'groq')
-        self.timeout = timeout
-        self.max_retries = max_retries
+        # Allow env-based overrides with sensible defaults
+        timeout_env = int(os.getenv('TIMEOUT_SECONDS', '10'))
+        retries_env = int(os.getenv('MAX_RETRIES', '2'))
+        self.timeout = timeout if timeout is not None else timeout_env
+        self.max_retries = max_retries if max_retries is not None else retries_env
         self.groq_client = None
         self.gemini_model = None
-        self.translator = MultilingualTranslator()
+        # Use the enhanced translator for better Igbo/Yoruba detection
+        self.translator = EnhancedMultilingualTranslator()
         
         # Initialize provider
         if self.provider == 'groq' and GROQ_AVAILABLE:
@@ -323,6 +327,8 @@ Provide a structured triage assessment with DETAILED reasoning and confidence sc
 13. Response must be ONLY valid JSON - no markdown, no code blocks, no extra text
 
 Analyze this patient now."""
+        prompt += "\n\n**CRITICAL: Your response must be ONLY valid JSON. Do not include markdown code blocks, explanations, or any text outside the JSON object.**"
+      
 
         return prompt
     
@@ -425,23 +431,38 @@ Analyze this patient now."""
                 # Wait before retry
                 time.sleep(0.5 * (attempt + 1))
     
+    def _run_with_timeout(self, func, *args, **kwargs):
+        """Cross-platform timeout runner using threading fallback when SIGALRM is unavailable."""
+        import threading
+
+        result_container = {'result': None, 'error': None}
+
+        def target():
+            try:
+                result_container['result'] = func(*args, **kwargs)
+            except Exception as e:
+                result_container['error'] = e
+
+        thread = threading.Thread(target=target)
+        thread.daemon = True
+        thread.start()
+        thread.join(self.timeout)
+
+        if thread.is_alive():
+            raise TimeoutError(f"Operation exceeded {self.timeout}s timeout")
+
+        if result_container['error'] is not None:
+            raise result_container['error']
+
+        return result_container['result']
+
     def _call_groq_with_timeout(self, prompt: str) -> str:
-        """Call Groq API with timeout handling"""
-        import signal
-        
-        def timeout_handler(signum, frame):
-            raise TimeoutError(f"Groq API call exceeded {self.timeout}s timeout")
-        
-        # Set timeout (Unix only)
-        if hasattr(signal, 'SIGALRM'):
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(self.timeout)
-        
-        try:
-            model = os.getenv('GROQ_MODEL', 'llama-3.1-70b-versatile')
-            max_tokens = int(os.getenv('MAX_TOKENS', 1024))
-            temperature = float(os.getenv('TEMPERATURE', 0.2))
-            
+        """Call Groq API with cross-platform timeout handling"""
+        model = os.getenv('GROQ_MODEL', 'llama-3.1-70b-versatile')
+        max_tokens = int(os.getenv('MAX_TOKENS', 1024))
+        temperature = float(os.getenv('TEMPERATURE', 0.2))
+
+        def _do_call():
             response = self.groq_client.chat.completions.create(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
@@ -449,42 +470,26 @@ Analyze this patient now."""
                 max_tokens=max_tokens,
                 response_format={"type": "json_object"}
             )
-            
             return response.choices[0].message.content
-            
-        finally:
-            if hasattr(signal, 'SIGALRM'):
-                signal.alarm(0)  # Cancel alarm
+
+        return self._run_with_timeout(_do_call)
     
     def _call_gemini_with_timeout(self, prompt: str) -> str:
-        """Call Gemini API with timeout handling"""
-        import signal
-        
-        def timeout_handler(signum, frame):
-            raise TimeoutError(f"Gemini API call exceeded {self.timeout}s timeout")
-        
-        # Set timeout (Unix only)
-        if hasattr(signal, 'SIGALRM'):
-            signal.signal(signal.SIGALRM, timeout_handler)
-            signal.alarm(self.timeout)
-        
-        try:
-            generation_config = {
-                "temperature": float(os.getenv('TEMPERATURE', 0.2)),
-                "max_output_tokens": int(os.getenv('MAX_TOKENS', 1024)),
-                "response_mime_type": "application/json"
-            }
-            
+        """Call Gemini API with cross-platform timeout handling"""
+        generation_config = {
+            "temperature": float(os.getenv('TEMPERATURE', 0.2)),
+            "max_output_tokens": int(os.getenv('MAX_TOKENS', 1024)),
+            # "response_mime_type": "application/json"
+        }
+
+        def _do_call():
             response = self.gemini_model.generate_content(
                 prompt,
                 generation_config=generation_config
             )
-            
             return response.text
-            
-        finally:
-            if hasattr(signal, 'SIGALRM'):
-                signal.alarm(0)  # Cancel alarm
+
+        return self._run_with_timeout(_do_call)
     
     def _parse_response(self, response: str) -> Dict:
         """

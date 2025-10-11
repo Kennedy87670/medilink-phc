@@ -5,7 +5,7 @@ Creates realistic historical data for forecasting model
 
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+from datetime import datetime, date, timedelta
 import random
 
 def generate_patient_visits_data(days=90, start_date=None):
@@ -20,8 +20,13 @@ def generate_patient_visits_data(days=90, start_date=None):
     - Seasonal variations (malaria season)
     """
     
+    # Ensure the generated series ends yesterday so forecasts start from tomorrow
+    # Example: if days=90 and today=2025-10-10, last generated date will be 2025-10-09
     if start_date is None:
-        start_date = datetime.now() - timedelta(days=days)
+        end_date = date.today() - timedelta(days=1)
+        start_date = end_date - timedelta(days=days - 1)
+        # Cast to datetime at midnight for consistency
+        start_date = datetime.combine(start_date, datetime.min.time())
     
     dates = []
     patient_counts = []
@@ -102,8 +107,8 @@ if __name__ == "__main__":
     # Add outbreak spikes
     df_with_spikes = add_outbreak_spikes(df, spike_days=3)
     
-    # Save to CSV
-    df_with_spikes.to_csv('patient_visits.csv', index=False)
+    # Save to CSV inside data/ to align with loaders
+    df_with_spikes.to_csv('data/patient_visits.csv', index=False)
     
     print(f"✅ Generated {len(df_with_spikes)} days of patient visit data")
     print(f"📊 Statistics:")
@@ -113,7 +118,7 @@ if __name__ == "__main__":
     print(f"   Total patients: {df_with_spikes['patient_count'].sum():,}")
     
     print(f"\n📅 Date range: {df_with_spikes['date'].min().strftime('%Y-%m-%d')} to {df_with_spikes['date'].max().strftime('%Y-%m-%d')}")
-    print(f"💾 Saved to: patient_visits.csv")
+    print(f"💾 Saved to: data/patient_visits.csv")
     
     # Show sample data
     print(f"\n📋 Sample data (first 10 days):")

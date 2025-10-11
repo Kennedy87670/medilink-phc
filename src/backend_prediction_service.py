@@ -61,10 +61,11 @@ class BackendPredictionService:
         """
         try:
             # Import AI triage service
-            from ai_triage_service_v2 import AITriageService
+            # Use the multilingual-enhanced V3 triage service
+            from ai_triage_service_v3 import AITriageServiceV3
             
             # Initialize triage service
-            triage_service = AITriageService()
+            triage_service = AITriageServiceV3()
             
             # Analyze patient
             result = triage_service.analyze_patient(patient_data)
@@ -75,7 +76,8 @@ class BackendPredictionService:
                 "data": {
                     "triage_level": result.get("triage_level"),
                     "triage_label": result.get("triage_label"),
-                    "confidence": result.get("confidence", 0),
+                    # v3 provides 'confidence_score' (0-1). Map to a consistent numeric field.
+                    "confidence": result.get("confidence_score", result.get("confidence", 0)),
                     "conditions": result.get("conditions", []),
                     "immediate_actions": result.get("immediate_actions", []),
                     "referral_needed": result.get("referral_needed", False),

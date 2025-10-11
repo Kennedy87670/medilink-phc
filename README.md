@@ -112,7 +112,7 @@ service = BackendPredictionService()
 patient = {
     'age': 6,
     'gender': 'Male',
-    'symptoms': ['e don faint', 'im body dey shake', 'breath dey hard'],
+    'symptoms': ['   '],
     'duration': '1 hour ago',
     'vital_signs': {'temperature': 40.5}
 }
@@ -135,6 +135,32 @@ patient = {
 result = service.analyze_triage(patient)
 # Output: Level 2 - URGENT (Malaria suspected - Perform RDT)
 ```
+
+### Streamlit Playground
+
+Interact with the system in a simple UI (triage, forecasts, outbreaks, resources):
+
+```bash
+# 1) Install dependencies
+pip install -r requirements.txt
+
+# 2) Run Streamlit (Windows-friendly invocation)
+python -m streamlit run streamlit_app.py
+
+# 3) Set API keys in the sidebar or .env
+#    GROQ_API_KEY / GEMINI_API_KEY
+```
+
+Notes:
+
+- If Groq client errors due to httpx/proxies, switch provider to "gemini" in the sidebar or set `PRIMARY_AI_PROVIDER=gemini` in `.env`.
+- Forecasts require `data/patient_visits.csv`. Use `data/generate_patient_data.py` if needed.
+
+### Forecast Data Timing
+
+- The generator (`data/generate_patient_data.py`) creates a daily time series that ends on "yesterday" by default.
+- This ensures forecasts naturally start from "tomorrow" when you ask for the next N days.
+- Example: If today is 2025-10-10 and you generate 90 days, the last data point is 2025-10-09. A 7‑day forecast will cover 2025-10-10 → 2025-10-16.
 
 ---
 
@@ -207,24 +233,24 @@ medilink-phc/
 │
 ├── 📊 src/                              # Core AI systems
 │   ├── ai_triage_service_v3.py         # Enhanced multilingual AI triage
-│   ├── multilingual_translator.py      # 5-language translator
+│   ├── multilingual_translator.py      # 4-language translator
+│   ├── multilingual_translator_improved.py # Enhanced Igbo/Yoruba detection
 │   ├── volume_forecast_model.py        # Facebook Prophet forecasting
 │   ├── outbreak_detector.py            # Z-score outbreak detection
 │   ├── resource_optimizer.py           # Staffing & inventory optimization
 │   ├── backend_prediction_service.py   # Clean API wrapper
-│   └── triage_prompt_v3.txt            # Production AI prompt
+│   └── triage_prompt_v3.py             # Production AI prompt (Python builder)
 │
 ├── 📁 data/                             # Data files
 │   ├── symptom_disease_mapping.csv     # 47 symptoms → diseases
 │   ├── patient_visits.csv              # Historical visit data (90 days)
-│   ├── test_dataset.csv                # 50-case ground truth dataset
-│   └── generate_sample_data.py         # Sample data generator
+│   └── generate_patient_data.py        # Sample data generator
 │
 ├── 🧪 tests/                            # Testing & evaluation
-│   ├── evaluate_ai_triage.py           # 50-case evaluation script
+│   ├── compare.py                      # Groq vs Gemini quick comparison
 │   ├── test_complete_flow.py           # End-to-end system test
 │   ├── test_multilingual.py            # Translation accuracy tests
-│   └── test_scenarios.py               # Individual scenario tests
+│   └── test_day2_comprehensive.py      # Day 2 triage scenarios
 │
 ├── 📄 docs/                             # Documentation
 │   ├── MODEL_DOCUMENTATION.md          # Complete technical docs
@@ -353,6 +379,7 @@ medilink-phc/
 | **Google Gemini**    | Backup LLM              | Reliable, free tier, JSON support                        |
 | **Facebook Prophet** | Time-series forecasting | Built for business forecasting, minimal tuning           |
 | **NumPy/Pandas**     | Data processing         | Industry standard, mature ecosystem                      |
+| **Streamlit**        | Playground UI           | Quick local testing of scenarios                         |
 
 ### Why LLMs Instead of Custom ML?
 
@@ -429,27 +456,27 @@ medilink-phc/
 
 ### For Users
 
-- **[Quick Start Guide](docs/QUICK_START.md)** - Get up and running in 5 minutes
-- **[User Manual](docs/USER_MANUAL.md)** - Complete feature documentation
-- **[Multilingual Guide](docs/MULTILINGUAL.md)** - Language support details
+- Quick Start Guide (coming soon)
+- User Manual (coming soon)
+- Multilingual Guide (coming soon)
 
 ### For Developers
 
-- **[Model Documentation](docs/MODEL_DOCUMENTATION.md)** - Complete technical documentation
-- **[API Integration Guide](docs/API_INTEGRATION_GUIDE.md)** - Backend integration
-- **[Architecture Guide](docs/ARCHITECTURE.md)** - System design decisions
+- **[API Integration Guide](docs/api_integration_guide.md)** - Backend integration
+- Model Documentation (coming soon)
+- Architecture Guide (coming soon)
 
 ### For Stakeholders
 
-- **[AI Ethics Framework](docs/AI_ETHICS.md)** - Ethics, safety, and compliance
-- **[Evaluation Report](reports/ai_evaluation_report.txt)** - Model performance
-- **[Technical Presentation](docs/technical_slides_outline.txt)** - Pitch deck guide
+- AI Ethics Framework (coming soon)
+- Evaluation Report (coming soon)
+- Technical Presentation (coming soon)
 
 ### Research & Methodology
 
 - **[Approach Explanation](docs/comprehensive_qa.md)** - Why we chose each approach
 - **[Test Results](reports/)** - All evaluation results
-- **[Prompt Engineering](src/triage_prompt_v3.txt)** - Production AI prompt
+- **[Prompt Engineering](src/triage_prompt_v3.py)** - Production AI prompt
 
 ---
 
@@ -463,7 +490,7 @@ python tests/test_multilingual.py
 # Expected: 88-95% accuracy across 5 languages
 
 # 2. AI triage evaluation (50 cases)
-python tests/evaluate_ai_triage.py
+python evaluate_ai_triage.py
 # Expected: 87% accuracy, 1.8s response time
 
 # 3. End-to-end system test (8 scenarios)
@@ -472,7 +499,7 @@ python tests/test_complete_flow.py
 
 # 4. Generate test dataset
 python data/create_test_dataset.py
-# Output: test_dataset.csv (50 cases with ground truth)
+# Output: test_dataset.csv (50 cases with ground truth) in project root
 
 # 5. Generate sample PHC data
 python data/generate_sample_data.py

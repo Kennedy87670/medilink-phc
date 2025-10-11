@@ -12,7 +12,7 @@ import time
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 from ai_triage_service_v2 import AITriageService
-from pidgin_translations import PidginTranslator
+from multilingual_translator import MultilingualTranslator
 
 
 # 10 comprehensive test scenarios
@@ -204,7 +204,7 @@ def run_comprehensive_tests(provider='groq'):
     # Initialize services
     try:
         ai_service = AITriageService(provider=provider, timeout=10, max_retries=2)
-        translator = PidginTranslator()
+        translator = MultilingualTranslator()
         
         results = []
         total_tests = len(TEST_SCENARIOS)
@@ -229,7 +229,7 @@ def run_comprehensive_tests(provider='groq'):
             
             # Translate Pidgin if needed
             if scenario['language'] in ['Pidgin', 'Mixed']:
-                print(f"\n🗣️  Pidgin Translation:")
+                print(f"\n🗣️  Translation:")
                 translated_symptoms, translation_map = translator.translate_symptoms(patient['symptoms'])
                 patient['symptoms'] = translated_symptoms
                 

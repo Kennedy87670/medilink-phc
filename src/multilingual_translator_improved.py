@@ -111,7 +111,7 @@ class EnhancedMultilingualTranslator:
             
             # Breathing problems
             "i no fit breathe well": "difficulty breathing",
-            "breath dey hard": "shortness of breath",
+            "breath dey hard": "difficulty breathing",
             "chest dey tight": "chest tightness",
             "e no fit breath": "respiratory distress",
             "breath dey fast": "fast breathing",

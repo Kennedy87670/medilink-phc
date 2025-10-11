@@ -1,68 +1,68 @@
 
 🏥 MEDILINK PHC - END-TO-END TEST REPORT
 ================================================================================
-Generated: 2025-10-09 07:10:08
+Generated: 2025-10-11 17:54:19
 
 OVERALL RESULTS:
 ────────────────────────────────────────
 Total Scenarios Tested: 8
 Passed: 8 (100.0%)
 Failed: 0
-Average Time per Scenario: 4.04s
+Average Time per Scenario: 7.73s
 
 PERFORMANCE EVALUATION:
 ────────────────────────────────────────
-✅ EXCELLENT: System responds quickly
+✅ GOOD: System performance is acceptable
 
 DETAILED RESULTS:
 ────────────────────────────────────────
 
 Scenario 1: Hausa Fever Case - ✅ PASSED
-  Total Time: 7.90s
+  Total Time: 8.21s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (7.70s)
-  Backend: ✅ (0.19s)
+  AI Triage: ✅ (8.05s)
+  Backend: ✅ (0.15s)
 
 Scenario 2: Igbo Diarrhea Emergency - ✅ PASSED
-  Total Time: 4.06s
+  Total Time: 3.07s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (3.83s)
-  Backend: ✅ (0.22s)
+  AI Triage: ✅ (2.70s)
+  Backend: ✅ (0.34s)
 
 Scenario 3: Yoruba Breathing Problem - ✅ PASSED
-  Total Time: 3.83s
+  Total Time: 3.42s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (3.62s)
-  Backend: ✅ (0.21s)
+  AI Triage: ✅ (3.22s)
+  Backend: ✅ (0.19s)
 
 Scenario 4: Pidgin Emergency - ✅ PASSED
-  Total Time: 3.76s
+  Total Time: 3.53s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (3.57s)
+  AI Triage: ✅ (3.34s)
   Backend: ✅ (0.19s)
 
 Scenario 5: Mixed Languages - ✅ PASSED
-  Total Time: 3.08s
-  Translation: ✅ (0.00s)
-  AI Triage: ✅ (2.92s)
-  Backend: ✅ (0.15s)
-
-Scenario 6: English Standard Case - ✅ PASSED
   Total Time: 2.96s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (2.71s)
-  Backend: ✅ (0.25s)
+  AI Triage: ✅ (2.74s)
+  Backend: ✅ (0.21s)
+
+Scenario 6: English Standard Case - ✅ PASSED
+  Total Time: 2.86s
+  Translation: ✅ (0.00s)
+  AI Triage: ✅ (2.74s)
+  Backend: ✅ (0.12s)
 
 Scenario 7: Edge Case - Vague Symptoms - ✅ PASSED
-  Total Time: 3.27s
+  Total Time: 5.01s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (3.01s)
-  Backend: ✅ (0.25s)
+  AI Triage: ✅ (4.64s)
+  Backend: ✅ (0.36s)
 
 Scenario 8: Edge Case - Pregnant Patient - ✅ PASSED
-  Total Time: 3.49s
+  Total Time: 32.82s
   Translation: ✅ (0.00s)
-  AI Triage: ✅ (3.29s)
-  Backend: ✅ (0.20s)
+  AI Triage: ✅ (32.47s)
+  Backend: ✅ (0.32s)
 
 READY FOR PRODUCTION: YES

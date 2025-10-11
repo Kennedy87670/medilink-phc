@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.insert(0, 'src')
 
-from multilingual_translator import MultilingualTranslator
+from multilingual_translator_improved import EnhancedMultilingualTranslator
 
 def test_multilingual_system():
     """Test the multilingual system without AI dependencies"""
@@ -15,7 +15,7 @@ def test_multilingual_system():
     print("🗣️  TESTING MULTILINGUAL TRANSLATION SYSTEM")
     print("="*80 + "\n")
     
-    translator = MultilingualTranslator()
+    translator = EnhancedMultilingualTranslator()
     
     # Test cases with different Nigerian languages
     test_cases = [
