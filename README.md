@@ -156,10 +156,13 @@ Notes:
 - If Groq client errors due to httpx/proxies, switch provider to "gemini" in the sidebar or set `PRIMARY_AI_PROVIDER=gemini` in `.env`.
 - Forecasts require `data/patient_visits.csv`. Use `data/generate_patient_data.py` if needed.
 
-#### Sample Triage Output (JSON)
+#### Playground Screenshots
 
-docs/images/reply.png
-docs/images/streamlit-dashboard.png
+![Streamlit Triage Input](docs/images/streamlit-dashboard.png)
+
+![Streamlit Triage Result](docs/images/reply.png)
+
+#### Sample Triage Output (JSON)
 
 ```json
 {
@@ -222,14 +225,6 @@ docs/images/streamlit-dashboard.png
   }
 }
 ```
-
-#### Playground Screenshots
-
-Place your screenshots in `docs/images/` with these filenames:
-
-![Streamlit Triage Input](docs/images/streamlit-triage-input.png)
-
-![Streamlit Triage Result](docs/images/streamlit-triage-result.png)
 
 ### Forecast Data Timing
 
